@@ -24,6 +24,12 @@ snapcraft
 sudo snap install --dangerous openssl-snap_3.0.13_amd64.snap
 ```
 
+## Connecting to the interface
+
+```
+sudo snap connect openssl-snap:intel-qat
+```
+
 ## Running the snap
 
 ```
