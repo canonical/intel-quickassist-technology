@@ -1,0 +1,28 @@
+name: openssl-snap
+base: core24
+version: '3.0.13'
+summary: Openssl snap
+description: |
+  openssl command inside a snap
+grade: devel
+confinement: strict
+
+plugs:
+  intel-qat:
+    interface: intel-qat
+
+apps:
+  openssl-snap:
+    plugs: [intel-qat]
+    command: usr/bin/openssl
+    environment:
+      OPENSSL_ENGINES: $SNAP/usr/lib/x86_64-linux-gnu/engines-3
+
+parts:
+  openssl:
+    plugin: nil
+    # openssl is already in the base snap
+    # but snapcraft fails without declaring
+    # it explictly here as it complains that
+    # usr/bin/ does not exist inside the part.
+    stage-packages: [openssl, qatengine]
