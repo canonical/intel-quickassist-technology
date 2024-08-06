@@ -1,0 +1,24 @@
+name: cpa-sample-code-snap
+base: core24
+version: '24.02.0'
+summary: CPA sample code snap
+description: |
+  CPA sample application that uses qatlib.
+grade: devel
+confinement: strict
+
+plugs:
+  intel-qat:
+    interface: intel-qat
+  process-control:
+    interface: process-control
+
+apps:
+  cpa-sample-code-snap:
+    plugs: [intel-qat, process-control]
+    command: usr/bin/cpa_sample_code
+
+parts:
+  openssl:
+    plugin: nil
+    stage-packages: [qatlib-examples]
