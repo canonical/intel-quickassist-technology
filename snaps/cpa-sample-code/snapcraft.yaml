@@ -22,3 +22,7 @@ parts:
   openssl:
     plugin: nil
     stage-packages: [qatlib-examples]
+
+layout:
+  /usr/share/qat:
+    bind: $SNAP/usr/share/qat
