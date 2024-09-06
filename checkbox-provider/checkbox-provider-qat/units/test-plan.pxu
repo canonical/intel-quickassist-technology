@@ -9,4 +9,4 @@ include:
 bootstrap_include:
     com.canonical.certification::executable
     com.canonical.certification::snap
-    com.canonical.certification::qat-pf
+    com.canonical.certification::qat_pf

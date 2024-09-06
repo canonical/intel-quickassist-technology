@@ -9,7 +9,7 @@ imports: from com.canonical.plainbox import manifest
 #requires:
 #  manifest.has_intel_qat == 'True'
 command:
-  qatctl list
+ qatctl list
 
 id: qat-common/attach-devices
 plugin: attachment
@@ -20,7 +20,7 @@ command:
  qatctl status
 
 unit: template
-template-resource: qat-pf
+template-resource: qat_pf
 template-engine: jinja2
 template-unit: job
 id: qat-common/check_pf_vfio_{{ pf }}
@@ -33,7 +33,7 @@ command:
   check_pf_vfio.py {{ pf }}
 
 unit: template
-template-resource: qat-pf
+template-resource: qat_pf
 template-engine: jinja2
 template-unit: job
 id: qat-common/check_pf_state_{{ pf }}
