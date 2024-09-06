@@ -1,5 +1,4 @@
-id: qat/qat-pf
-category_id: qat
+id: qat-pf
 _description:
   List of QAT VFs
 plugin: resource

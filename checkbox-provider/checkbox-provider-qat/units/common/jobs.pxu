@@ -3,7 +3,7 @@ id: qat-common/qat-detect
 _summary: Check presence of Intel Quick Assist devices 
 user: root
 plugin: shell
-category_id: qat
+category_id: qat-common
 estimated_duration: 2s
 imports: from com.canonical.plainbox import manifest
 #requires:
@@ -13,19 +13,19 @@ command:
 
 id: qat-common/attach-devices
 plugin: attachment
-category_id: qat
+category_id: qat-common
 user: root
 _summary: Attach devices list
 command:
  qatctl status
 
 unit: template
-template-resource: qat/qat-pf
+template-resource: qat-pf
 template-engine: jinja2
 template-unit: job
 id: qat-common/check_pf_vfio_{{ pf }}
 depends: qat-common/qat-detect
-category_id: qat
+category_id: qat-common
 plugin: shell
 user: root
 _summary: Check PF VFIO for {{ pf }}
@@ -33,12 +33,12 @@ command:
   check_pf_vfio.py {{ pf }}
 
 unit: template
-template-resource: qat/qat-pf
+template-resource: qat-pf
 template-engine: jinja2
 template-unit: job
 id: qat-common/check_pf_state_{{ pf }}
 depends: qat-common/qat-detect
-category_id: qat
+category_id: qat-common
 plugin: shell
 user: root
 _summary: Check PF state operation for {{ pf }}
