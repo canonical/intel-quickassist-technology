@@ -20,4 +20,4 @@ ResultInactive=yes
 ResultActive=yes
 EOF
 
-$SCRIPT_DIR/install-deps
+$SNAP/bin/install-full-deps
