@@ -1,7 +1,7 @@
 name: checkbox-qat-classic
-summary: Checkbox tests for TDX
+summary: Checkbox tests for Intel QuickAssist Technology
 description: |
-  Collection of tests for Intel TDX (Trusted Domain eXtension)
+  Collection of tests for Intel QuickAssist Technology
 version: '2.0'
 confinement: classic
 grade: stable
