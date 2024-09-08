@@ -1,5 +1,0 @@
-#!/bin/bash
-
-# remove dependencies for the checkbox provider
-
-apt remove -y qatzip qatengine
