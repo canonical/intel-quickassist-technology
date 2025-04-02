@@ -47,6 +47,7 @@ $ sudo ./enable-opensearch-qat.sh
 To quickly test the QAT support, we can create an index with `qat_deflate` codec:
 
 ```bash
+$ sudo cp /var/snap/opensearch/current/etc/opensearch/certificates/node-cm0.pem ./
 $ curl --cacert ./node-cm0.pem -XPUT "https://admin:admin@localhost:9200/qat_index" -H 'Content-Type:application/json' -d'
 {
   "settings": {
