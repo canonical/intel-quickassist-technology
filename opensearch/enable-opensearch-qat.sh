@@ -28,6 +28,15 @@ setfacl -m group:snap_daemon:rw /dev/vfio/*
 ### Opensearch intel-qat snap interface
 snap connect opensearch:intel-qat
 
+### Connect some needed interfaces because of manual installation
+# of the opensearch snap
+snap connect opensearch:sys-fs-cgroup-service
+snap connect opensearch:log-observe
+snap connect opensearch:system-observe
+snap connect opensearch:mount-observe
+snap connect opensearch:process-control
+snap connect opensearch:hardware-observe
+
 ### Custom codecs plugin security policy
 
 CUSTOM_CODECS_PLUGIN_POLICY="/var/snap/opensearch/current/usr/share/opensearch/plugins/opensearch-custom-codecs/plugin-security.policy"
@@ -53,5 +62,19 @@ cat >${SYSTEMD_DROPIN} <<EOF
 LimitMEMLOCK=infinity
 EOF
 systemctl daemon-reload
+
+### Setup opensearch
+snap run opensearch.setup          \
+  --node-name cm0                     \
+  --node-roles cluster_manager,data   \
+  --tls-priv-key-root-pass root1234   \
+  --tls-priv-key-admin-pass admin1234 \
+  --tls-priv-key-node-pass node1234   \
+  --tls-init-setup yes
+
+snap start opensearch.daemon
+echo "Wait for opensearch to start up"
+sleep 20
+snap run opensearch.security-init --tls-priv-key-admin-pass=admin1234
 
 systemctl restart snap.opensearch.daemon.service
