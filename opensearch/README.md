@@ -44,7 +44,26 @@ $ sudo ./enable-opensearch-qat.sh
 
 # Quick test
 
-To quickly test the QAT support, we can create an index with `qat_deflate` codec:
+To quickly test the QAT support, we can create an index with `qat_deflate` codec.
+
+## Setup opensearch
+
+```bash
+$ sudo snap run opensearch.setup          \
+  --node-name cm0                     \
+  --node-roles cluster_manager,data   \
+  --tls-priv-key-root-pass root1234   \
+  --tls-priv-key-admin-pass admin1234 \
+  --tls-priv-key-node-pass node1234   \
+  --tls-init-setup yes
+
+$ sudo systemctl restart snap.opensearch.daemon.service
+$ echo "Wait for opensearch to start up"
+$ sleep 20
+$ sudo snap run opensearch.security-init --tls-priv-key-admin-pass=admin1234
+```
+
+## Create an index with QAT codec
 
 ```bash
 $ sudo cp /var/snap/opensearch/current/etc/opensearch/certificates/node-cm0.pem ./
