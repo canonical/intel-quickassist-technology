@@ -20,7 +20,7 @@ Here are the steps to enable QAT support for Opensearch snap on your platform:
 You have to follow public documentation to build the opensearch snap locally.
 Once you have the built snap, you must install it on the platform.
 
-Here are a sample of steps to build the snap with `multipass`
+Here is a sample of steps to build the snap with `multipass`
 
 ```bash
 $ sudo snap install multipass
